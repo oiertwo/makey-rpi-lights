@@ -2,6 +2,8 @@
 
 # INSTALL
 
+## dest rpi (w/ rpi tree)
+
 ```
 sudo apt install python3-pigpio
 ```
