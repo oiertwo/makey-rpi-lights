@@ -23,3 +23,7 @@ sudo pigpiod
 ```
 PIGPIO_ADDR=192.168.1.3 python intell.py
 ```
+
+# TODOS
+
+* use this piano? https://github.com/gustavklopp/pypiano
