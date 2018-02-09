@@ -19,6 +19,9 @@ screen.fill(BLACK)
 
 piano_c1 = pygame.mixer.Sound("piano/c1.wav")
 piano_d1 = pygame.mixer.Sound("piano/d1.wav")
+piano_a1 = pygame.mixer.Sound("piano/f1s.wav")
+piano_e1 = pygame.mixer.Sound("piano/e1.wav")
+
 
 factory = PiGPIOFactory(host='192.168.1.114')
 tree_1 = LEDBoard(*range(2,28,2),pwm=True, pin_factory=factory)
@@ -46,9 +49,7 @@ def tree_2_on():
     for l in tree_2:
         l.off()
 
-while True:
-
-    events = pygame.event.get()
+def piano(events):
     for event in events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -58,5 +59,17 @@ while True:
             elif event.key == pygame.K_DOWN:
                 piano_d1.play()
                 tree_2_on()
+                write_note("C1")
             elif event.key == pygame.K_UP:
-                break
+                piano_a1.play()
+                tree_2_on()
+            elif event.key == pygame.K_RIGHT:
+                piano_e1.play()
+                tree_1_on()
+
+try:
+    while True:
+        events = pygame.event.get()
+        piano(events)
+except KeyboardInterrupt:
+    print("\n AU REVOIR!!!! AGUR!!!")
